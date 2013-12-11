@@ -16,11 +16,9 @@
 	<input type="submit" name="cart" value="Cart (0)" />
 	<%
 	ShoppingCartRemote cart = (ShoppingCartRemote) request.getSession().getAttribute("cart");
-	System.out.println("cart is "+cart);
 	int cartSize = 0;
 	if(cart != null){
 		cartSize = cart.getItems().size();
-		System.out.println("cart is not null");
 	}
 	
 	 %>

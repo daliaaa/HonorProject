@@ -14,7 +14,7 @@
 <%@ page import="com.beans.*"%>
 <%
 	ShoppingCartRemote cart = (ShoppingCartRemote) request.getSession()
-			.getAttribute("cart");
+	.getAttribute("cart");
 	int cartSize = 0;
 	if (cart != null) {
 		cartSize = cart.getTotalItemCount();
@@ -65,54 +65,71 @@
 <div class="container">
 	<div class="page-header" id="banner">
 		<form action="Servlet" method="get">
-			<input type="hidden" name="page" value="Cart.jsp"> <input
-				type="hidden" name="update" value="true">
-			<table style="width: 100%; border-radius: 4px;" border="1">
-				<tr>
-					<th>Item</th>
-					<th>Count</th>
-					<th>Price</th>
-				</tr>
-				<%
-					int totalPrice = 0;
-					for (Item item : cart.getItems()) {
-						totalPrice += item.getCount() * item.getPrice();
-				%>
-				<tr>
-
-					<td><img src="<%=item.getImgPath()%>" width="50" height="50"
-						alt="Basboosa" style="border: 2px solid #ED217C;"> <%=item.getName()%>:
-						<%=item.getDescription()%></td>
-					<td><input type="number" name="<%=item.getName()%>" min="0"
-						max="100" value="<%=item.getCount()%>" maxlength="2" size="4">
-					</td>
-					<td>$<%=item.getPrice()%></td>
-				</tr>
-				<%
-					}
-				%>
-				<tr>
-					<th>Total</th>
-					<th></th>
-					<th>$<%=totalPrice%>
-				</tr>
-			</table>
-			<br>
-			<br> <input type="submit" class="btn btn-primary pull-right"
-				style="background-color: #ED217C; border-color: #ED217C"
-				name="updateButton" value="Update Quantities" />
+			<input type="hidden" name="page" value="FrDessert.jsp"> 
+			<div class="row">
+				<p>
+					<img src="img/creme.jpg" width="130" height="100"
+						alt="Crème Brûlée" style="border: 2px solid #ED217C;"><br>
+					<br>Crème Brûlée: A bowl of delicious custard covered with sugar crust.<br>
+					( $5/bowl )
+				</p>
+				<input type="hidden" name="name" value="Creme Brulee"> <input
+					type="hidden" name="imgPath" value="img/creme.jpg"> <input
+					type="hidden" name="desc"
+					value="A bowl of delicious custard covered with sugar crust. ">
+				<input type="hidden" name="price" value="5"> <input
+					type="number" name="count" min="0" max="100" value="1"
+					maxlength="2" size="4"> <input
+					type="submit" class="btn btn-primary btn-sm"
+					style="background-color: #F282A2; border-color: #F282A2"
+					name="creme" value="Add to Cart" /> <br> <br>
+			</div>
 		</form>
-		<br>
-		<br>
 		<form action="Servlet" method="get">
-			<input type="hidden" name="page" value="Checkout.jsp"> <input
-				type="submit" class="btn btn-primary pull-right"
-				style="background-color: #ED217C; border-color: #ED217C" name="cart"
-				value="Checkout ->" />
-
+			<input type="hidden" name="page" value="FrDessert.jsp"> 
+			<div class="row">
+				<p>
+					<img src="img/crepe.jpg" width="130" height="100"
+						alt="Crepe Cake" style="border: 2px solid #ED217C;"><br>
+					<br>Crepe Cake: Five mouth watering crepes with chocolate sauce on the side. <br> (
+					$7/5 )
+				</p>
+				<input type="hidden" name="name" value="Crepe"> <input
+					type="hidden" name="imgPath" value="img/crepe.jpg"> <input
+					type="hidden" name="desc"
+					value="Five mouth watering crepes with chocolate sauce on the side. ">
+				<input type="hidden" name="price" value="7"> <input
+					type="number" name="count" min="0" max="100" value="1"
+					maxlength="2" size="4"> <input
+					type="submit" class="btn btn-primary btn-sm"
+					style="background-color: #F282A2; border-color: #F282A2"
+					name="crepe" value="Add to Cart" /> <br> <br>
+			</div>
 		</form>
-	</div>
 
+		<form action="Servlet" method="get">
+			<input type="hidden" name="page" value="FrDessert.jsp"> 
+			<div class="row">
+				<p>
+					<img src="img/caramel.jpg" width="130" height="100"
+						alt="Crème Caramel" style="border: 2px solid #ED217C;"><br>
+					<br>Carrot Cake: Sweet custard covered with syrup. <br>
+					( $5/bowl )
+				</p>
+				<input type="hidden" name="name" value="Crème Caramel"> <input
+					type="hidden" name="imgPath" value="img/caramel.jpg"> <input
+					type="hidden" name="desc"
+					value="Sweet custard covered with syrup. ">
+				<input type="hidden" name="price" value="5"> <input
+					type="number" name="count" min="0" max="100" value="1"
+					maxlength="2" size="4"> <input
+					type="submit" class="btn btn-primary btn-sm"
+					style="background-color: #F282A2; border-color: #F282A2"
+					name="caramel" value="Add to Cart" /> <br> <br>
+			</div>
+		</form>
+
+	</div>
 </div>
 
 <script src="./Bootswatch  Default_files/jquery.min.js"></script>

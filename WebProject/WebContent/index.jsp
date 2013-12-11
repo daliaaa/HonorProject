@@ -11,14 +11,12 @@
 	<%@ page import="com.helpers.*"%>
 	<%@ page import="com.beans.*"%>
 	<%
-	ShoppingCartRemote cart = (ShoppingCartRemote) request.getSession().getAttribute("cart");
-	System.out.println("cart is "+cart);
-	int cartSize = 0;
-	if(cart != null){
-		cartSize = cart.getItemCount();
-		System.out.println("cart is not null");
-	}
-	 %>
+		ShoppingCartRemote cart = (ShoppingCartRemote) request.getSession().getAttribute("cart");
+		int cartSize = 0;
+		if(cart != null){
+			cartSize = cart.getTotalItemCount();
+		}
+	%>
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -38,7 +36,7 @@
                 <li class="divider"></li>
                 <li><a tabindex="-1" href="AmDessert.jsp">American</a></li>
                 <li class="divider"></li>
-                <li><a tabindex="-1" href="OtherDessert.html">Other Desserts</a></li>
+                <li><a tabindex="-1" href="FrDessert.jsp">French</a></li>
                 <li class="divider"></li>
               </ul>
             </li>

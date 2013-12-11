@@ -15,11 +15,9 @@
 <%
 	ShoppingCartRemote cart = (ShoppingCartRemote) request.getSession()
 			.getAttribute("cart");
-	System.out.println("cart is " + cart);
 	int cartSize = 0;
 	if (cart != null) {
-		cartSize = cart.getItemCount();
-		System.out.println("cart is not null");
+		cartSize = cart.getTotalItemCount();
 	}
 %>
 <div class="navbar navbar-default navbar-fixed-top">
@@ -43,8 +41,7 @@
 						<li class="divider"></li>
 						<li><a tabindex="-1" href="AmDessert.jsp">American</a></li>
 						<li class="divider"></li>
-						<li><a tabindex="-1" href="OtherDessert.html">Other
-								Desserts</a></li>
+						<li><a tabindex="-1" href="FrDessert.jsp">French</a></li>
 						<li class="divider"></li>
 					</ul></li>
 				<li><a href="About.jsp">About</a></li>
@@ -79,7 +76,6 @@
 				<%
 					int totalPrice = 0;
 					for (Item item : cart.getItems()) {
-						System.out.println(item.getCount());
 						totalPrice += item.getCount() * item.getPrice();
 				%>
 				<tr>
@@ -108,10 +104,9 @@
 	</div>
 	<br> <br>
 	<form class="bs-example form-horizontal">
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="well">
-				
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="well">
 					<fieldset>
 						<legend>Billing Information</legend>
 						<div class="form-group">
@@ -237,15 +232,153 @@
 							</div>
 						</div>
 					</fieldset>
-			
+
+				</div>
 			</div>
 		</div>
-	</div>
-	<br> <br>
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="well">
-				
+		<br> <br>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="well">
+					<fieldset>
+						<legend>Shipping Information</legend>
+						<div class="checkbox">
+							<label> <input type="checkbox"> Same as Billing Address.
+							</label>
+						</div>
+						<br>
+						<div class="form-group">
+							<label for="inputFirstName" class="col-lg-2 control-label">First
+								Name</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="inputFirstName"
+									placeholder="First Name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputLastName" class="col-lg-2 control-label">Last
+								Name</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="inputLastName"
+									placeholder="Last Name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputAddress1" class="col-lg-2 control-label">Address
+								1</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="inputAddress1"
+									placeholder="Address 1">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputAddress2" class="col-lg-2 control-label">Address
+								2</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="inputAddress2"
+									placeholder="Address 2">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputCity" class="col-lg-2 control-label">City</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="inputCity"
+									placeholder="City">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="select" class="col-lg-2 control-label">State</label>
+							<div class="col-lg-10">
+								<select class="form-control" id="select">
+									<option>Select State</option>
+									<option value="AL">Alabama</option>
+									<option value="AK">Alaska</option>
+									<option value="AZ">Arizona</option>
+									<option value="AR">Arkansas</option>
+									<option value="CA">California</option>
+									<option value="CO">Colorado</option>
+									<option value="CT">Connecticut</option>
+									<option value="DE">Delaware</option>
+									<option value="DC">District Of Columbia</option>
+									<option value="FL">Florida</option>
+									<option value="GA">Georgia</option>
+									<option value="HI">Hawaii</option>
+									<option value="ID">Idaho</option>
+									<option value="IL">Illinois</option>
+									<option value="IN">Indiana</option>
+									<option value="IA">Iowa</option>
+									<option value="KS">Kansas</option>
+									<option value="KY">Kentucky</option>
+									<option value="LA">Louisiana</option>
+									<option value="ME">Maine</option>
+									<option value="MD">Maryland</option>
+									<option value="MA">Massachusetts</option>
+									<option value="MI">Michigan</option>
+									<option value="MN">Minnesota</option>
+									<option value="MS">Mississippi</option>
+									<option value="MO">Missouri</option>
+									<option value="MT">Montana</option>
+									<option value="NE">Nebraska</option>
+									<option value="NV">Nevada</option>
+									<option value="NH">New Hampshire</option>
+									<option value="NJ">New Jersey</option>
+									<option value="NM">New Mexico</option>
+									<option value="NY">New York</option>
+									<option value="NC">North Carolina</option>
+									<option value="ND">North Dakota</option>
+									<option value="OH">Ohio</option>
+									<option value="OK">Oklahoma</option>
+									<option value="OR">Oregon</option>
+									<option value="PA">Pennsylvania</option>
+									<option value="RI">Rhode Island</option>
+									<option value="SC">South Carolina</option>
+									<option value="SD">South Dakota</option>
+									<option value="TN">Tennessee</option>
+									<option value="TX">Texas</option>
+									<option value="UT">Utah</option>
+									<option value="VT">Vermont</option>
+									<option value="VA">Virginia</option>
+									<option value="WA">Washington</option>
+									<option value="WV">West Virginia</option>
+									<option value="WI">Wisconsin</option>
+									<option value="WY">Wyoming</option>
+								</select> <br>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputZipCode" class="col-lg-2 control-label">Zip
+								Code</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="inputZipCode"
+									placeholder="xxxxx">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPhone" class="col-lg-2 control-label">Phone
+								Number</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="inputPhone"
+									placeholder="xxx-xxx-xxxx">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail" class="col-lg-2 control-label">Email
+								Address</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="inputEmail"
+									placeholder="example@example.com">
+							</div>
+						</div>
+					</fieldset>
+
+				</div>
+			</div>
+		</div>
+		<br> <br>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="well">
+
 					<fieldset>
 						<legend>Payment Method</legend>
 						<div class="form-group">
@@ -295,23 +428,23 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputSecuity" class="col-lg-2 control-label">Secuity Code</label>
+							<label for="inputSecuity" class="col-lg-2 control-label">Secuity
+								Code</label>
 							<div class="col-lg-10">
 								<input type="text" class="form-control" id="inputSecurity"
 									placeholder="">
 							</div>
 						</div>
 					</fieldset>
-			
+
+				</div>
 			</div>
 		</div>
-	</div>
-	<input type="submit"
-					class="btn btn-primary pull-right"
-					style="background-color: #ED217C; border-color: #ED217C"
-					name="submitButton" value="Submit" />
+		<input type="submit" class="btn btn-primary pull-right"
+			style="background-color: #ED217C; border-color: #ED217C"
+			name="submitButton" value="Submit" />
 	</form>
-<br><br>
+	<br> <br>
 	<script src="./Bootswatch  Default_files/jquery.min.js"></script>
 	<script src="./Bootswatch  Default_files/bootstrap.min.js"></script>
 	<script src="./Bootswatch  Default_files/bootswatch.js"></script>

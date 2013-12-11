@@ -10,7 +10,8 @@ import com.helpers.Item;
 public interface ShoppingCartRemote {
 	public void init();
 	public void addItem(Item item);
-	public void removeItem(Item item);
 	public ArrayList<Item> getItems();
-	public int getItemCount();
+	public int getTotalItemCount();
+	public void setItemCount(int index, int newCount);
+	public void removeItem(int i);
 }
